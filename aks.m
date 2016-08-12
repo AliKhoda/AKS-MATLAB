@@ -173,7 +173,7 @@ end
 
 v = mx(v,r,n);  % compute v mod (r, n)
 
-v = fixlen(v,r);    % make sure the lenght of the output vectors is fixed
+v = fixlen(v,r);    % make sure the length of the output vectors is fixed
 
 end
 
@@ -192,7 +192,7 @@ mat = x'*y;     % multiply vectors and get a matrix
 vlen = length(x) + length(y) - 1;   % length of output vector
 v = zeros(1, vlen);     % initialize output vector
 for k = 1 : vlen    % for each element in output vector, k
-    for l = 1 : k   % add all elemets in matrix mat corresponding to x^k
+    for l = 1 : k   % add all elements in matrix mat corresponding to x^k
         if k-l+1<=length(x) && l<=length(y)     % of course if elements exist
             v(k) = v(k) + mat(k-l+1,l);
         end
