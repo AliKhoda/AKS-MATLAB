@@ -166,7 +166,7 @@ end
 function v = multx(x,y)
 
 mat = x'*y;
-vlen = length(x) + length(y)
+vlen = length(x) + length(y) - 1;
 v = zeros(1, vlen);
 for k = 1 : vlen
     for l = 1 : k
