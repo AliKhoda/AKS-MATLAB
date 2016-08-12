@@ -184,8 +184,9 @@ function v = mx(x,r,n)
 len = length(r);
 v = x;
 while length(v) >= len
-    assert(mod(x(end),r(end)) == 0);
-    m = v(end)/r(end);
+    % assert(mod(x(end),r(end)) == 0);
+    % m = v(end)/r(end);
+    m = minv(r(end), n)*v(end);
     v(end-len+1:end) = v(end-len+1:end) - m*r;
     v = shorten(v);
 end
@@ -254,5 +255,36 @@ function r = isdiv(n,p)
 %  r : boolean, true if n is divisible by p, false otherwise
 
 r = mod(n,p) == 0;
+
+end
+
+function t = minv(a, n)
+    
+t = 0;
+nt = 1;
+r = n;
+nr = a;
+
+while nr ~= 0
+    q = floor(r/nr);
+    [t, nt] = update(t, nt, q);
+    [r, nr] = update(r, nr, q);
+end
+
+if r>1
+    error('a is not invertible');
+elseif t<0
+    t = t + n;
+end
+
+end
+
+function [x, nx] = update(x, nx, q)
+
+ux = nx;
+unx = x - q * nx;
+
+x = ux;
+nx = unx;
 
 end
